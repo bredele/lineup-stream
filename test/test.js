@@ -8,14 +8,20 @@ var concat = require('concat-stream')
 var lineup = require('..')
 
 
-test('concat multiple streams together', (assert) => {
+test('should concat multiple streams together', (assert) => {
   assert.plan(1)
-  var stream1 = stream('hello')
-  var stream2 = stream('world')
-  var result = concat(data => {
-    assert.equal(data.toString(), 'helloworld')
-  });
+  var stream1 = stream('hello ')
+  var stream2 = stream('world!')
+  var result = concat(data => assert.equal(data.toString(), 'hello world!'))
   lineup(stream1, stream2)
+    .pipe(result)
+})
+
+
+test('should concat streams and other primitives', (assert) => {
+  assert.plan(1)
+  var result = concat(data => assert.equal(data.toString(), 'hello world!'))
+  lineup('hello ', stream('world'), '!')
     .pipe(result)
 })
 
