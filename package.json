@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/bredele/lineup-stream/issues"
   },
-  "homepage": "https://github.com/bredele/lineup-stream#readme"
+  "homepage": "https://github.com/bredele/lineup-stream#readme",
+  "devDependencies": {
+    "concat-stream": "^1.5.1",
+    "tape": "^4.6.0"
+  }
 }
