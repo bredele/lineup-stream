@@ -1,0 +1,24 @@
+{
+  "name": "lineup-stream",
+  "version": "1.0.0",
+  "description": "Line up outputs of multiple streams",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bredele/lineup-stream.git"
+  },
+  "keywords": [
+    "stream",
+    "concat",
+    "array"
+  ],
+  "author": "Olivier Wietrich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bredele/lineup-stream/issues"
+  },
+  "homepage": "https://github.com/bredele/lineup-stream#readme"
+}
