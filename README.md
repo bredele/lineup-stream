@@ -2,7 +2,7 @@
 
 Concatenate multiple streams into a single readable stream and line up buffers.
 
-[![NPM](https://nodei.co/npm/concat-stream.png)](https://nodei.co/npm/lineup-stream/)
+[![NPM](https://nodei.co/npm/lineup-stream.png)](https://nodei.co/npm/lineup-stream/)
 
 ## Usage
 
