@@ -9,9 +9,14 @@ var lineup = require('..')
 
 
 test('concat multiple streams together', (assert) => {
+  assert.plan(1)
   var stream1 = stream('hello')
   var stream2 = stream('world')
-  concat(lineup(stream1, stream2), (result => assert.equal(result, ['hello', 'world'])))
+  var result = concat(data => {
+    assert.equal(data.toString(), 'helloworld')
+  });
+  lineup(stream1, stream2)
+    .pipe(result)
 })
 
 /**
@@ -21,7 +26,7 @@ test('concat multiple streams together', (assert) => {
 function stream(str) {
   var read = new Readable
   read._read = function() {}
-  setTimeout(() => read.push(str), 500)
+  read.push(str)
   read.push(null)
   return read
 }
