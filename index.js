@@ -24,6 +24,9 @@ module.exports = function(...args) {
         stream.push(data)
         if(bool) return stream.push(null)
         next(idx)
+      }, err => {
+        if(bool) return stream.push(null)
+        next(idx)
       })
     } else if(typeof child.on === 'function') {
       child.on('data', data => stream.push(data))

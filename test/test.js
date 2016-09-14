@@ -43,6 +43,14 @@ test('should concat promises', (assert) => {
   lineup(async('hello'), async(' world!')).pipe(result)
 })
 
+
+test('should concat promise that fails', (assert) => {
+  assert.plan(1)
+  var result = concat(data => assert.equal(data.toString(), ' world!'))
+  lineup(async('hello', true), async(' world!')).pipe(result)
+})
+
+
 /**
  * Create readable stream
  */
@@ -64,10 +72,11 @@ function stream(str) {
  * @api private
  */
 
-function async(value) {
+function async(value, bool) {
   var def = promise()
   setTimeout(function() {
-	   def.fulfill(value)
+	   if(!bool) def.fulfill(value)
+     else def.reject('error')
   }, 500)
   return def.promise
 }
