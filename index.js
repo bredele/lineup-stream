@@ -18,6 +18,7 @@ module.exports = function(...args) {
   function next(idx) {
     var child = args[idx]
     var bool = ++idx == length
+    if(typeof child === 'function') child = child()
     if(typeof child.then === 'function') {
       child.then(data => {
         stream.push(data)
@@ -31,19 +32,13 @@ module.exports = function(...args) {
         next(idx)
       })
     } else {
-      stream.push(transform(child))
+      stream.push(child)
       if(bool) return stream.push(null)
       next(idx)
     }
   }
   next(0)
   return stream
-}
-
-
-function transform(value) {
-  if(typeof value === 'function') value = value()
-  return value
 }
 
 /**
