@@ -25,6 +25,16 @@ test('should concat streams and other primitives', (assert) => {
     .pipe(result)
 })
 
+
+test('should concat functions', (assert) => {
+  assert.plan(1)
+  var result = concat(data => assert.equal(data.toString(), 'hello world!'))
+  lineup(function() {
+    return 'hello'
+  }, function() {
+    return ' world!'
+  }).pipe(result)
+})
 /**
  * Create readable stream
  */

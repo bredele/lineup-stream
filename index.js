@@ -25,7 +25,7 @@ module.exports = function(...args) {
         next(idx)
       })
     } else {
-      stream.push(child)
+      stream.push(transform(child))
       if(bool) return stream.push(null)
       next(idx)
     }
@@ -34,6 +34,11 @@ module.exports = function(...args) {
   return stream
 }
 
+
+function transform(value) {
+  if(typeof value === 'function') value = value()
+  return value
+}
 
 /**
  * Return true is stream
