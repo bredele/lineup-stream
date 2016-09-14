@@ -49,5 +49,5 @@ function transform(value) {
  */
 
 function isStream(value) {
-  return value && (typeof value.pipe === 'function')
+  return value && (typeof value.on === 'function')
 }
