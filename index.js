@@ -25,7 +25,7 @@ module.exports = function(...args) {
         if(bool) return stream.push(null)
         next(idx)
       })
-    } else if(isStream(child)) {
+    } else if(typeof child.on === 'function') {
       child.on('data', data => stream.push(data))
       child.on('end', () => {
         if(bool) return stream.push(null)
@@ -39,16 +39,4 @@ module.exports = function(...args) {
   }
   next(0)
   return stream
-}
-
-/**
- * Return true is stream
- *
- * @param {Any} value
- * @return {Boolean}
- * @api private
- */
-
-function isStream(value) {
-  return value && (typeof value.on === 'function')
 }
