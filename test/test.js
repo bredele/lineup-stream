@@ -6,6 +6,7 @@ var test = require('tape')
 var Readable = require('stream').Readable
 var concat = require('concat-stream')
 var lineup = require('..')
+var promise = require('promises-a')
 
 
 test('should concat multiple streams together', (assert) => {
@@ -35,6 +36,13 @@ test('should concat functions', (assert) => {
     return ' world!'
   }).pipe(result)
 })
+
+test('should concat promises', (assert) => {
+  assert.plan(1)
+  var result = concat(data => assert.equal(data.toString(), 'hello world!'))
+  lineup(async('hello'), async(' world!')).pipe(result)
+})
+
 /**
  * Create readable stream
  */
@@ -45,4 +53,21 @@ function stream(str) {
   read.push(str)
   read.push(null)
   return read
+}
+
+
+/**
+ * Return value after 500ms using promises.
+ *
+ * @param  {Any} value
+ * @return {Promise}
+ * @api private
+ */
+
+function async(value) {
+  var def = promise()
+  setTimeout(function() {
+	   def.fulfill(value)
+  }, 500)
+  return def.promise
 }

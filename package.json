@@ -23,6 +23,7 @@
   "homepage": "https://github.com/bredele/lineup-stream#readme",
   "devDependencies": {
     "concat-stream": "^1.5.1",
-    "tape": "^4.6.0"
+    "tape": "^4.6.0",
+    "promises-a": "^2.3.0"
   }
 }
