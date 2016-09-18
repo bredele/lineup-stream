@@ -50,6 +50,13 @@ test('should concat promise that fails', (assert) => {
   lineup(async('hello', true), async(' world!')).pipe(result)
 })
 
+test('should concat promise that returns an array', (assert) => {
+  assert.plan(1)
+  var result = concat(data => assert.equal(data.toString(), 'hello world!'))
+  lineup(async(['hello', ' world!'], true)).pipe(result)
+})
+
+
 
 /**
  * Create readable stream
