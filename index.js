@@ -21,8 +21,9 @@ module.exports = function(...args) {
     if(typeof child === 'function') child = child()
     if(typeof child.then === 'function') {
       child.then(data => {
-        stream.push(data)
-        if(bool) return stream.push(null)
+        var arr = [].concat(data)
+        length += arr.length
+        insert(args, idx, arr)
         next(idx)
       }, err => {
         if(bool) return stream.push(null)
@@ -42,4 +43,18 @@ module.exports = function(...args) {
   }
   next(0)
   return stream
+}
+
+
+/**
+ * Insert array into an other array.
+ *
+ * @param {Array}
+ * @param {Number} index
+ * @param {Any} values
+ * @api private
+ */
+
+function insert(arr, index, values) {
+  [].splice.apply(arr, [index, 0].concat(values));
 }

@@ -18,7 +18,6 @@ test('should concat multiple streams together', (assert) => {
     .pipe(result)
 })
 
-
 test('should concat streams and other primitives', (assert) => {
   assert.plan(1)
   var result = concat(data => assert.equal(data.toString(), 'hello world!'))
@@ -50,13 +49,14 @@ test('should concat promise that fails', (assert) => {
   lineup(async('hello', true), async(' world!')).pipe(result)
 })
 
-test('should concat promise that returns an array', (assert) => {
+test('should concat promises that return promises', assert => {
   assert.plan(1)
   var result = concat(data => assert.equal(data.toString(), 'hello world!'))
-  lineup(async(['hello', ' world!'], true)).pipe(result)
+  lineup(async([
+    async('hello '),
+    async('world')
+  ]), async('!')).pipe(result)
 })
-
-
 
 /**
  * Create readable stream
