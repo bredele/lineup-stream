@@ -18,10 +18,17 @@ test('should concat multiple streams together', (assert) => {
     .pipe(result)
 })
 
-test('should concat streams and other primitives', (assert) => {
+test('should concat streams and strings', (assert) => {
   assert.plan(1)
   var result = concat(data => assert.equal(data.toString(), 'hello world!'))
   lineup('hello ', stream('world'), '!')
+    .pipe(result)
+})
+
+test('should concat streams and numbers', (assert) => {
+  assert.plan(1)
+  var result = concat(data => assert.equal(data.toString(), 'hello 2'))
+  lineup(stream('hello '), 2)
     .pipe(result)
 })
 

@@ -36,7 +36,7 @@ module.exports = function(...args) {
         next(idx)
       })
     } else {
-      stream.push(child)
+      stream.push('' + child)
       if(bool) return stream.push(null)
       next(idx)
     }
