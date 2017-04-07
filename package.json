@@ -1,6 +1,6 @@
 {
   "name": "lineup-stream",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "description": "Line up outputs of multiple streams",
   "main": "index.js",
   "scripts": {
